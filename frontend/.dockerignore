@@ -1,0 +1,20 @@
+# Frontend .dockerignore — keeps the build context small and clean
+node_modules/
+dist/
+.git/
+.gitignore
+.idea/
+.vscode/
+*.log
+README.md
+.dockerignore
+Dockerfile
+.env
+.env.local
+.env.*.local
+coverage/
+
+# NOTE: nginx.conf is intentionally NOT ignored — the Dockerfile
+# copies it into the production image to customize nginx.
+# Add it back here only if you switch to a base image that bundles
+# its own nginx config.

@@ -1,0 +1,19 @@
+# Backend .dockerignore — keeps the build context small and clean
+target/
+.git/
+.gitignore
+.idea/
+.vscode/
+*.iml
+*.iws
+*.log
+HELP.md
+.mvn/wrapper/maven-wrapper.jar
+mvnw
+mvnw.cmd
+.mvn/
+README.md
+.dockerignore
+Dockerfile
+*.tar
+*.tar.gz

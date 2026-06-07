@@ -1,0 +1,66 @@
+# NOTE: with Docker Compose v2 the top-level `version` key is obsolete and ignored.
+# It's been intentionally removed to avoid the warning.
+services:
+  # Backend Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: product-management-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:h2:mem:productdb
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+      - SPRING_H2_CONSOLE_ENABLED=true
+    volumes:
+      # H2 is in-memory by default; this volume is kept as a placeholder
+      # for future file-based DB / log persistence. Mounted at /tmp to
+      # avoid clobbering the appuser-owned /app directory.
+      - backend_data:/tmp
+    networks:
+      - product-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: product-management-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      # Inside the Docker network, the browser hits the frontend on :3000
+      # and nginx proxies /api/* to the backend container. So the SPA must
+      # call the API at a same-origin URL (just /api/v1, no host).
+      - VITE_API_BASE_URL=/api/v1
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - product-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  backend_data:
+    driver: local
+
+networks:
+  product-network:
+    driver: bridge

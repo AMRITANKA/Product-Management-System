@@ -1,0 +1,103 @@
+# =========================
+# Java / Spring Boot (Maven)
+# =========================
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/!**/src/main/**/target/
+backend/!**/src/test/**/target/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+.factorypath
+bin/
+*.launch
+
+# VS Code (Java)
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Spring Boot
+*.original
+
+# Logs
+*.log
+logs/
+backend/logs/
+
+# =========================
+# Node / React / Vite
+# =========================
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/build/
+frontend/coverage/
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+frontend/lerna-debug.log*
+frontend/.vite/
+
+# =========================
+# OS / Editor files
+# =========================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# =========================
+# Docker
+# =========================
+# Uncomment if you don't want to commit images
+# *.tar
+# *.tar.gz
+
+# =========================
+# Misc
+# =========================
+*.bak
+*.tmp
+*.swp
+*.swo
+*~
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+.vercel/
+.netlify/
