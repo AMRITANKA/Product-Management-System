@@ -527,7 +527,7 @@ For 400 validation failures, an extra `fieldErrors` map is included:
 | `id` | BIGINT | PK, auto-increment |
 | `name` | VARCHAR(100) | NOT NULL, length 2–100 |
 | `category` | VARCHAR(50) | NOT NULL, length 2–50 |
-| `price` | DECIMAL(12,2) | NOT NULL, > 0, ≤ 10 integer digits |
+| `price` | DECIMAL_12_2 | NOT NULL, > 0, ≤ 10 integer digits |
 | `quantity` | INT | NOT NULL, ≥ 0 |
 | `description` | VARCHAR(500) | nullable |
 | `created_at` | TIMESTAMP | NOT NULL, auto-set on insert |
@@ -539,7 +539,7 @@ erDiagram
         BIGINT id PK
         VARCHAR(100) name
         VARCHAR(50) category
-        DECIMAL(12,2) price
+       DECIMAL_12_2 price
         INT quantity
         VARCHAR(500) description
         TIMESTAMP created_at
