@@ -112,7 +112,7 @@ export default function Layout({ children }) {
             Built with React, Spring Boot, and modern web technologies.
           </p>
           <p className="text-center text-sm text-muted-foreground md:text-right">
-            © 2024 Product Management System. All rights reserved.
+            © 2026 Product Management System. All rights reserved.
           </p>
         </div>
       </footer>

@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install dependencies (including dev dependencies needed for build)
+RUN npm ci
 
 # Copy source code
 COPY . .
@@ -30,6 +30,10 @@ RUN chown -R nginx:nginx /usr/share/nginx/html && \
     chown -R nginx:nginx /var/cache/nginx && \
     chown -R nginx:nginx /var/log/nginx && \
     chown -R nginx:nginx /etc/nginx/conf.d
+
+# Ensure runtime dirs are present and writable by nginx
+RUN mkdir -p /run /var/run && \
+  chown -R nginx:nginx /run /var/run
 
 # Switch to nginx user
 USER nginx
